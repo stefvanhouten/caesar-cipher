@@ -29,15 +29,15 @@ alphabet = {
 
 
 def encode(value, n):
+  return "".join([
+      list(alphabet.keys())[list(alphabet.values()).index(
+          (alphabet[s] + n) % 26)] if s in alphabet else s
+      for s in value.lower()
+  ])
+
+
+def decode(value, n):
   result = []
-  for s in value.lower():
-    if s in alphabet:
-      s = alphabet[s]
-      result.append(
-          list(alphabet.keys())[list(alphabet.values()).index((s + n) % 26)])
-    else:
-      result.append(s)
-  return "".join(result)
 
 
-print(encode("hi", 2))
+print(encode("hi world", 2))
