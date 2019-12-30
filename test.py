@@ -37,7 +37,14 @@ def encode(value, n):
 
 
 def decode(value, n):
-  result = []
+  return "".join([
+      list(alphabet.keys())[list(alphabet.values()).index(
+          (alphabet[s] - n) % 26)] if s in alphabet else s
+      for s in value.lower()
+  ])
 
 
-print(encode("hi world", 2))
+shift = 2
+encrypted = encode("hello world", shift)
+print(encrypted)
+print(decode(encrypted, shift))
